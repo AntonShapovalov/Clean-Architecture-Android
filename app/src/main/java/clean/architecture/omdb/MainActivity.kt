@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
             CleanArchitectureTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = "Clean Architecture",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -37,9 +37,9 @@ class MainActivity : ComponentActivity() {
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
         Text(
-            text = "Hello $name!",
+            text = "Hello, $name!",
             modifier = modifier,
-            style = MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.titleLarge
         )
     }
 }
@@ -48,6 +48,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     CleanArchitectureTheme {
-        Greeting("Android")
+        Greeting("Clean Architecture")
     }
 }
