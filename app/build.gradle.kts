@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "clean.architecture.omdb"
-        minSdk = 24
+        minSdk = 31
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
