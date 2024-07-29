@@ -44,6 +44,10 @@ dependencies {
     // android
     implementation(libs.androidx.core.ktx)
 
+    // retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.moshi)
+
     // testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
