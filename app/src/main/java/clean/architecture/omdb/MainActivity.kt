@@ -16,6 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import clean.architecture.omdb.ui.theme.CleanArchitectureTheme
 
+/**
+ * Main activity.
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +36,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/**
+ * Greeting composable.
+ */
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {

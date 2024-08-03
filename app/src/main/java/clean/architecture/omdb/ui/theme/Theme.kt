@@ -1,3 +1,4 @@
+@file:Suppress("AnnotationOnSeparateLine")
 package clean.architecture.omdb.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -85,6 +86,9 @@ private val darkScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDark,
 )
 
+/**
+ * Theme composable.
+ */
 @Composable
 fun CleanArchitectureTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

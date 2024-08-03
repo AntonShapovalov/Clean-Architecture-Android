@@ -1,0 +1,26 @@
+# Configuration for compose https://detekt.dev/docs/introduction/compose.
+comments:
+  UndocumentedPublicClass:
+    active: true
+  UndocumentedPublicFunction:
+    active: true
+    ignoreAnnotated: [ 'Preview' ]
+  UndocumentedPublicProperty:
+    active: true
+    excludes: [ '**/theme/**','**/test/**','**/androidTest/**' ]
+
+complexity:
+  LongParameterList:
+    ignoreAnnotated: [ 'Composable' ]
+
+naming:
+  FunctionNaming:
+    ignoreAnnotated: [ 'Composable' ]
+
+style:
+  MagicNumber:
+    ignorePropertyDeclaration: true
+    ignoreCompanionObjectPropertyDeclaration: true
+  UnusedPrivateMember:
+    ignoreAnnotated: [ 'Preview' ]
+

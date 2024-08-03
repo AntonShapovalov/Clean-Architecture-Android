@@ -7,6 +7,6 @@ import com.squareup.moshi.Json
  *
  * @param movies The list of movies returned by the search.
  */
-data class Search (
+data class Search(
     @Json(name = "Search") val movies: List<Movie>?
 )

@@ -1,0 +1,14 @@
+apply {
+    plugin(rootProject.libs.plugins.detekt.get().pluginId)
+}
+
+detekt {
+    toolVersion = rootProject.libs.versions.detekt.get()
+    config.setFrom(rootProject.file("/config/detekt/detekt.yml"))
+    autoCorrect = true
+    buildUponDefaultConfig = true
+}
+
+dependencies {
+    detektPlugins(rootProject.libs.detekt.formatting)
+}
