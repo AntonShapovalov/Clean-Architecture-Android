@@ -8,5 +8,5 @@ plugins {
 }
 
 subprojects {
-    apply(from = "${rootProject.projectDir}/gradle/detekt/detekt.gradle")
+    apply(from = rootProject.file("/gradle/detekt/detekt.gradle"))
 }
