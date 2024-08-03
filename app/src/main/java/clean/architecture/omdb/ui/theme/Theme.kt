@@ -107,6 +107,7 @@ fun CleanArchitectureTheme(
     }
     MaterialTheme(
         colorScheme = colorScheme,
+        typography = Typography,
         content = content
     )
 }
