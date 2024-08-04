@@ -1,4 +1,3 @@
-@file:Suppress("AnnotationOnSeparateLine")
 package clean.architecture.omdb.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme

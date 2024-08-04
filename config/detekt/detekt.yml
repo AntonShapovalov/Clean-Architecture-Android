@@ -13,6 +13,11 @@ complexity:
   LongParameterList:
     ignoreAnnotated: [ 'Composable' ]
 
+formatting:
+  AnnotationOnSeparateLine:
+    autoCorrect: false
+    ignoreAnnotated: ['Composable']
+
 naming:
   FunctionNaming:
     ignoreAnnotated: [ 'Composable' ]
