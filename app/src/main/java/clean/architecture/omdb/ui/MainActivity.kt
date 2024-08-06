@@ -1,4 +1,4 @@
-package clean.architecture.omdb
+package clean.architecture.omdb.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
