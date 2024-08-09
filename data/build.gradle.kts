@@ -46,7 +46,7 @@ dependencies {
 
     // Retrofit
     implementation(libs.retrofit)
-    implementation(libs.converter.moshi)
+    implementation(libs.retrofit.converter.moshi)
     implementation(libs.moshi)
 
     // Testing
