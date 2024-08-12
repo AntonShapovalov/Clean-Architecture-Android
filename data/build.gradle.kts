@@ -3,6 +3,9 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.jetbrains.kotlin.kapt)
+    alias(libs.plugins.hilt)
+    id(libs.plugins.secrets.gradle.plugin.get().pluginId)
 }
 
 android {
@@ -36,6 +39,10 @@ android {
             jvmTarget.set(JvmTarget.JVM_17)
         }
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -43,6 +50,10 @@ dependencies {
 
     // Android
     implementation(libs.androidx.core.ktx)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
     // Retrofit
     implementation(libs.retrofit)
@@ -53,4 +64,15 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
+}
+
+// See https://github.com/google/secrets-gradle-plugin?tab=readme-ov-file#configuration-options
+secrets {
+    propertiesFileName = "secrets.properties"
+    defaultPropertiesFileName = "local.defaults.properties"
 }

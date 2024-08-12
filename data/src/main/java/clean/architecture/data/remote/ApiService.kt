@@ -14,9 +14,11 @@ interface ApiService {
      *
      * @param apiKey The API key for authentication.
      * @param title The title of the movie to search for.
+     *
+     * @return A [Search] object containing the list of movies.
      */
     @GET("/.")
-    suspend fun searchMoviesByTitle(
+    suspend fun search(
         @Query("apikey") apiKey: String,
         @Query("s") title: String
     ): Search

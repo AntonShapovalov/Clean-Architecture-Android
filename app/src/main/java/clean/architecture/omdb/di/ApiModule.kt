@@ -45,15 +45,12 @@ class ApiModule {
         .addInterceptor(getLoggingInterceptor())
         .build()
 
-    private fun getLoggingInterceptor(): HttpLoggingInterceptor {
-        val interceptor = HttpLoggingInterceptor()
-        val level = if (BuildConfig.DEBUG) {
+    private fun getLoggingInterceptor() = HttpLoggingInterceptor().apply {
+        level = if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor.Level.BODY
         } else {
             HttpLoggingInterceptor.Level.NONE
         }
-        interceptor.level = level
-        return interceptor
     }
 
     private fun buildMoshi(): Moshi = Moshi.Builder().build()
