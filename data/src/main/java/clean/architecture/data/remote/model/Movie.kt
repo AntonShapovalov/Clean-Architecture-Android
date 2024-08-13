@@ -1,6 +1,7 @@
 package clean.architecture.data.remote.model
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
 /**
  * Response model for search movie.
@@ -11,6 +12,7 @@ import com.squareup.moshi.Json
  * @param type Movie type.
  * @param poster Movie poster.
  */
+@JsonClass(generateAdapter = true)
 data class Movie(
     @Json(name = "Title") val title: String,
     @Json(name = "Year") val year: String,

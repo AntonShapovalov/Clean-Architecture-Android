@@ -53,12 +53,13 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    kapt(libs.hilt.android.compiler)
 
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)
-    implementation(libs.moshi)
+    implementation(libs.moshi.kotlin)
+    kapt(libs.moshi.kotlin.codegen)
 
     // Testing
     testImplementation(libs.junit)

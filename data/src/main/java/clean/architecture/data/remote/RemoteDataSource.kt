@@ -16,9 +16,8 @@ class RemoteDataSource @Inject constructor(
      *
      * @param title The title of the movie.
      *
-     * @return The [Result.success] with a list of [Movie], or [Result.failure] otherwise.
+     * @return The list of [Movie].
      */
-    suspend fun getMovies(title: String): Result<List<Movie>> = runCatching {
-        apiService.search(BuildConfig.API_KEY, title).movies ?: emptyList()
-    }
+    suspend fun getMovies(title: String): List<Movie> = apiService
+        .search(BuildConfig.API_KEY, title).movies ?: emptyList()
 }
