@@ -62,9 +62,10 @@ dependencies {
     ksp(libs.moshi.kotlin.codegen)
 
     // Testing
+    testImplementation(libs.kotlin.test)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
 
 // See https://github.com/google/secrets-gradle-plugin?tab=readme-ov-file#configuration-options

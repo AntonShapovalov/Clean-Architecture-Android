@@ -83,11 +83,18 @@ dependencies {
     implementation(libs.moshi.kotlin)
     ksp(libs.moshi.kotlin.codegen)
 
-    // Testing
-    testImplementation(kotlin("test"))
+    // Unit testing
+    testImplementation(libs.kotlin.test)
     testImplementation(libs.junit)
-    androidTestImplementation(kotlin("test"))
+    testImplementation(libs.mockk)
+    testImplementation(libs.mockk.android)
+    testImplementation(libs.mockk.agent)
+
+    // Instrumentation testing
+    androidTestImplementation(libs.kotlin.test)
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.mockk.android)
+    androidTestImplementation(libs.mockk.agent)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
