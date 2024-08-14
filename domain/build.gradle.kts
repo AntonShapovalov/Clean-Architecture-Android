@@ -9,5 +9,10 @@ java {
 }
 
 dependencies {
+    implementation(libs.kotlinx.coroutines.core)
+
+    testImplementation(libs.kotlin.test)
+    testImplementation(libs.junit)
     testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
