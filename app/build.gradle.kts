@@ -6,7 +6,10 @@ plugins {
     alias(libs.plugins.kotlin.compose.compiler)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kover)
 }
+
+apply(from = rootProject.file("/gradle/kover/kover.gradle"))
 
 android {
     namespace = "clean.architecture.omdb"

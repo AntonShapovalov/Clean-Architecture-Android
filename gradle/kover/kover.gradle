@@ -1,0 +1,18 @@
+apply {
+    plugin(rootProject.libs.plugins.kover.get().pluginId)
+}
+
+dependencies {
+    kover(project(":data"))
+    kover(project(":domain"))
+}
+
+kover {
+    reports {
+        filters.excludes {
+            androidGeneratedClasses()
+            classes("*.di.*", "*.ui.theme.*")
+            annotatedBy("*Composable")
+        }
+    }
+}
