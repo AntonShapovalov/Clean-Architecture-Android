@@ -11,8 +11,17 @@ kover {
     reports {
         filters.excludes {
             androidGeneratedClasses()
-            classes("*.di.*", "*.ui.theme.*")
             annotatedBy("*Composable")
+            classes(
+                    "*\$*",
+                    "*.di.*",
+                    "*.ui.theme.*",
+                    "*_Factory",
+                    "*JsonAdapter",
+                    "dagger.hilt.internal.*",
+                    "hilt_aggregated_deps.*",
+                    "*.CleanArchitectureApp"
+            )
         }
     }
 }
