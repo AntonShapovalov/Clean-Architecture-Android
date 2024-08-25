@@ -1,4 +1,4 @@
-package clean.architecture.data.local.model
+package clean.architecture.data.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
