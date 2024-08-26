@@ -79,6 +79,9 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 
+    // Room
+    implementation(libs.androidx.room.ktx)
+
     // Retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.moshi)

@@ -5,7 +5,7 @@ import clean.architecture.data.remote.model.Movie
 import javax.inject.Inject
 
 /**
- * Remote data source to fetch data from API.
+ * Remote data source to fetch data from the remote API.
  */
 class RemoteDataSource @Inject constructor(
     private val apiService: ApiService

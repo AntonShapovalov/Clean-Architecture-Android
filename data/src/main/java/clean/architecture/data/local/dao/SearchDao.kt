@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import clean.architecture.data.local.entity.SearchEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -24,4 +25,10 @@ interface SearchDao {
      */
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(entity: SearchEntity)
+
+    /**
+     * Updates an existing search item in the table.
+     */
+    @Update
+    suspend fun update(entity: SearchEntity)
 }
