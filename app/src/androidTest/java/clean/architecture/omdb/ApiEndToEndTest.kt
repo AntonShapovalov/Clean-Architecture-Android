@@ -1,7 +1,7 @@
 package clean.architecture.omdb
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import clean.architecture.data.remote.RemoteDataSource
+import clean.architecture.data.movie.remote.MovieRemoteDataSource
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.test.runTest
@@ -26,7 +26,7 @@ class ApiEndToEndTest {
     var hiltRule = HiltAndroidRule(this)
 
     @Inject
-    lateinit var remoteDataSource: RemoteDataSource
+    lateinit var movieRemoteDataSource: MovieRemoteDataSource
 
     @Before
     fun init() {
@@ -39,7 +39,7 @@ class ApiEndToEndTest {
         val title = "Star"
 
         // When
-        val result = remoteDataSource.getMovies(title)
+        val result = movieRemoteDataSource.getMovies(title)
 
         // Then
         assertTrue(result.isNotEmpty())

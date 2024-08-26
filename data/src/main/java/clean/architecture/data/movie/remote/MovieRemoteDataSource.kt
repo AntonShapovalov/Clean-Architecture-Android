@@ -1,13 +1,14 @@
-package clean.architecture.data.remote
+package clean.architecture.data.movie.remote
 
 import clean.architecture.data.BuildConfig
-import clean.architecture.data.remote.model.Movie
+import clean.architecture.data.api.ApiService
+import clean.architecture.data.api.model.Movie
 import javax.inject.Inject
 
 /**
- * Remote data source to fetch data from the remote API.
+ * Remote data source to fetch movies data from the remote API.
  */
-class RemoteDataSource @Inject constructor(
+class MovieRemoteDataSource @Inject constructor(
     private val apiService: ApiService
 ) {
 

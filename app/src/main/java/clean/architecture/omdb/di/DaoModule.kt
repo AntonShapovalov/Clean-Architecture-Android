@@ -1,7 +1,7 @@
 package clean.architecture.omdb.di
 
-import clean.architecture.data.local.MovieDatabase
-import clean.architecture.data.local.dao.SearchDao
+import clean.architecture.data.db.MovieDatabase
+import clean.architecture.data.db.dao.SearchDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

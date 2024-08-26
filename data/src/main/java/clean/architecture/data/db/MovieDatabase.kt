@@ -1,9 +1,9 @@
-package clean.architecture.data.local
+package clean.architecture.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import clean.architecture.data.local.dao.SearchDao
-import clean.architecture.data.local.entity.SearchEntity
+import clean.architecture.data.db.dao.SearchDao
+import clean.architecture.data.db.entity.SearchEntity
 
 /**
  * Defines the database configuration and serves as main access point to the persisted data.

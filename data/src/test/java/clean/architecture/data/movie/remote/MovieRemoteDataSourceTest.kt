@@ -1,7 +1,8 @@
-package clean.architecture.data.remote
+package clean.architecture.data.movie.remote
 
-import clean.architecture.data.remote.model.Movie
-import clean.architecture.data.remote.model.Search
+import clean.architecture.data.api.ApiService
+import clean.architecture.data.api.model.Movie
+import clean.architecture.data.api.model.Search
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
@@ -9,10 +10,10 @@ import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class RemoteDataSourceTest {
+class MovieRemoteDataSourceTest {
 
     private val apiService = mockk<ApiService>()
-    private val remoteDataSource = RemoteDataSource(apiService)
+    private val dataSource = MovieRemoteDataSource(apiService)
 
     @Test
     fun `when getting movies, given search response, then return list of movies`() = runTest {
@@ -22,7 +23,7 @@ class RemoteDataSourceTest {
         coEvery { apiService.search(any(), "test") } returns search
 
         // When
-        val result = remoteDataSource.getMovies("test")
+        val result = dataSource.getMovies("test")
 
         // Then
         assertEquals(listOf(movie), result)
@@ -35,7 +36,7 @@ class RemoteDataSourceTest {
         coEvery { apiService.search(any(), "test") } returns search
 
         // When
-        val result = remoteDataSource.getMovies("test")
+        val result = dataSource.getMovies("test")
 
         // Then
         assertTrue(result.isEmpty())

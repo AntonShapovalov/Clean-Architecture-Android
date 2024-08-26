@@ -2,7 +2,7 @@ package clean.architecture.omdb.di
 
 import android.content.Context
 import androidx.room.Room
-import clean.architecture.data.local.MovieDatabase
+import clean.architecture.data.db.MovieDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

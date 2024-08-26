@@ -1,17 +1,17 @@
-package clean.architecture.data.local
+package clean.architecture.data.search.local
 
-import clean.architecture.data.local.dao.SearchDao
-import clean.architecture.data.local.entity.SearchEntity
+import clean.architecture.data.db.dao.SearchDao
+import clean.architecture.data.db.entity.SearchEntity
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
-class LocalDataSourceTest {
+class SearchLocalDataSourceTest {
 
     private val searchDao = mockk<SearchDao>()
-    private val localDataSource = LocalDataSource(searchDao)
+    private val dataSource = SearchLocalDataSource(searchDao)
 
     @Test
     fun `when save search, given entity, then call dao insert`() = runTest {
@@ -20,7 +20,7 @@ class LocalDataSourceTest {
         coEvery { searchDao.insert(entity) } returns Unit
 
         // When
-        localDataSource.saveSearch(entity)
+        dataSource.saveSearch(entity)
 
         // Then
         coVerify { searchDao.insert(entity) }

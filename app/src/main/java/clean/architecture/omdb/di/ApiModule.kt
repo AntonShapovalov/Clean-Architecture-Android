@@ -1,6 +1,6 @@
 package clean.architecture.omdb.di
 
-import clean.architecture.data.remote.ApiService
+import clean.architecture.data.api.ApiService
 import clean.architecture.omdb.BuildConfig
 import com.squareup.moshi.Moshi
 import dagger.Module

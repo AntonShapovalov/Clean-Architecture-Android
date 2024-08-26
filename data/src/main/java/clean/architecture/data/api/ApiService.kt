@@ -1,6 +1,6 @@
-package clean.architecture.data.remote
+package clean.architecture.data.api
 
-import clean.architecture.data.remote.model.Search
+import clean.architecture.data.api.model.Search
 import retrofit2.http.GET
 import retrofit2.http.Query
 

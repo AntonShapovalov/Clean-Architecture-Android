@@ -1,4 +1,4 @@
-package clean.architecture.data.remote.model
+package clean.architecture.data.api.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
