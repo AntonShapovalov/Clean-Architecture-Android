@@ -17,8 +17,14 @@ interface SearchDao {
     /**
      * Retrieves all history items from the table.
      */
-    @Query("SELECT * FROM search_history ORDER BY timestamp DESC")
+    @Query("SELECT * FROM search_history ORDER BY updated DESC")
     fun getAll(): Flow<List<SearchEntity>>
+
+    /**
+     * Retrieves a search item by its text.
+     */
+    @Query("SELECT * FROM search_history WHERE search_text = :text")
+    suspend fun getByText(text: String): SearchEntity?
 
     /**
      * Inserts a new search item into the table.

@@ -1,6 +1,7 @@
 package clean.architecture.domain.search
 
 import clean.architecture.domain.search.model.Search
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Repository for search history.
@@ -10,7 +11,7 @@ interface SearchRepository {
     /**
      * Get all search history.
      */
-    fun getSearchHistory(): List<Search>
+    fun getSearchHistory(): Flow<List<Search>>
 
     /**
      * Get search by text.
@@ -19,12 +20,12 @@ interface SearchRepository {
      *
      * @return Search or null if not found.
      */
-    fun getSearch(text: String): Search?
+    suspend fun getSearch(text: String): Search?
 
     /**
      * Save search.
      *
      * @param search Search to save.
      */
-    fun saveSearch(search: Search)
+    suspend fun saveSearch(search: Search)
 }

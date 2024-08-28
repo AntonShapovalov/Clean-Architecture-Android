@@ -1,4 +1,4 @@
-package clean.architecture.omdb.di
+package clean.architecture.omdb.di.db
 
 import clean.architecture.data.db.MovieDatabase
 import clean.architecture.data.db.dao.SearchDao

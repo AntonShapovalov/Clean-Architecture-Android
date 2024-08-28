@@ -9,11 +9,13 @@ import androidx.room.PrimaryKey
  *
  * @param id The unique identifier for the search history item.
  * @param searchText The search query text.
- * @param timestamp The timestamp when the search was performed.
+ * @param created The timestamp when the search was created.
+ * @param updated The timestamp when the search was last updated.
  */
 @Entity(tableName = "search_history")
 data class SearchEntity(
     @PrimaryKey(autoGenerate = true) val id: Int,
     @ColumnInfo(name = "search_text") val searchText: String,
-    @ColumnInfo(name = "timestamp") val timestamp: Long
+    @ColumnInfo(name = "created") val created: Long,
+    @ColumnInfo(name = "updated") val updated: Long
 )

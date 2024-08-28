@@ -1,4 +1,4 @@
-package clean.architecture.omdb.di
+package clean.architecture.omdb.di.api
 
 import clean.architecture.data.api.ApiService
 import clean.architecture.omdb.BuildConfig

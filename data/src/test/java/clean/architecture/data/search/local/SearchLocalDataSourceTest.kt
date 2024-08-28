@@ -29,6 +29,7 @@ class SearchLocalDataSourceTest {
     private val _entity = SearchEntity(
         id = 0,
         searchText = "",
-        timestamp = 0L
+        created = 0L,
+        updated = 0L
     )
 }

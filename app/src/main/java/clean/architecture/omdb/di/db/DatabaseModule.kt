@@ -1,4 +1,4 @@
-package clean.architecture.omdb.di
+package clean.architecture.omdb.di.db
 
 import android.content.Context
 import androidx.room.Room
