@@ -16,10 +16,12 @@ kover {
                     "*\$*",
                     "*.di.*",
                     "*.ui.theme.*",
-                    "*_Factory",
-                    "*JsonAdapter",
+                    "*.data.db.*Dao*",
+                    "*.data.db.*Database*",
                     "dagger.hilt.internal.*",
                     "hilt_aggregated_deps.*",
+                    "*_Factory",
+                    "*JsonAdapter",
                     "*.CleanArchitectureApp"
             )
         }

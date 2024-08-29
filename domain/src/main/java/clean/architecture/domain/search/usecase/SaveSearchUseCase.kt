@@ -7,6 +7,8 @@ import clean.architecture.domain.search.model.SearchValidationError
 
 /**
  * Use case to save search to the search history.
+ *
+ * @param searchRepository The search repository.
  */
 class SaveSearchUseCase(
     private val searchRepository: SearchRepository
@@ -14,8 +16,11 @@ class SaveSearchUseCase(
 
     /**
      * Executes the use case.
+     *
+     * @param input The search query text from the user input.
      */
-    suspend operator fun invoke(text: String): SaveSearchState {
+    suspend operator fun invoke(input: String): SaveSearchState {
+        val text = input.trim()
         val error = validateSearch(text)
         return if (error != null) {
             SaveSearchState.ValidationError(error)
@@ -35,11 +40,11 @@ class SaveSearchUseCase(
 
     private suspend fun saveSearch(text: String) {
         val savedSearch = searchRepository.getSearch(text)
+        val currentTime = System.currentTimeMillis()
         if (savedSearch != null) {
-            val updated = savedSearch.copy(updated = System.currentTimeMillis())
+            val updated = savedSearch.copy(updated = currentTime)
             searchRepository.saveSearch(updated)
         } else {
-            val currentTime = System.currentTimeMillis()
             val search = Search(id = 0, text = text, created = currentTime, updated = currentTime)
             searchRepository.saveSearch(search)
         }

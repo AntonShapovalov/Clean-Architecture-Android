@@ -12,6 +12,7 @@ java {
 dependencies {
     implementation(libs.kotlinx.coroutines.core)
 
+    // Testing
     testImplementation(libs.kotlin.test)
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
