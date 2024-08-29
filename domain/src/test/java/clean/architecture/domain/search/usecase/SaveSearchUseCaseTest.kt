@@ -99,8 +99,8 @@ class SaveSearchUseCaseTest {
         // Then
         assertEquals(SaveSearchState.Success, result)
         assertEquals(input, slot.captured.text)
-        assertTrue(currentTime < slot.captured.updated)
-        assertTrue(slot.captured.created < slot.captured.updated)
+        assertTrue(slot.captured.updated > currentTime)
+        assertTrue(slot.captured.updated > slot.captured.created)
     }
 
     @Test
@@ -120,7 +120,7 @@ class SaveSearchUseCaseTest {
         assertEquals(SaveSearchState.Success, result)
         assertEquals(input, slot.captured.text)
         assertEquals(slot.captured.created, slot.captured.updated)
-        assertTrue(currentTime < slot.captured.created)
+        assertTrue(slot.captured.created > currentTime)
     }
 
     private val _search = Search(

@@ -12,6 +12,15 @@ class SearchLocalDataSource @Inject constructor(
 ) {
 
     /**
+     * Get search history entity from the local database.
+     *
+     * @param text The search text.
+     */
+    suspend fun getSearch(text: String): SearchEntity? {
+        return searchDao.getByText(text)
+    }
+
+    /**
      * Save search data to the database.
      *
      * @param searchEntity The [SearchEntity] to be saved.
