@@ -34,14 +34,19 @@ class SearchBarViewModel @Inject constructor(
     val uiState: StateFlow<SearchBarUiState> = _uiState.asStateFlow()
 
     /**
-     * Saves the search to the local search history.
+     * Saves the current search to the local search history.
      *
      * @param query The search query.
      */
     fun saveSearch(query: String) {
-        if (job?.isActive == true) return
+        if (isSaveSearchInProgress()) return
         job = viewModelScope.launch(dispatcherIO) {
             _uiState.value = saveSearchUseCase(query).toUiState()
         }
     }
+
+    /**
+     * Checks if a save search operation is in progress.
+     */
+    fun isSaveSearchInProgress(): Boolean = job?.isActive == true
 }

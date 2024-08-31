@@ -20,6 +20,7 @@ kover {
                     "*.data.db.*Database*",
                     "dagger.hilt.internal.*",
                     "hilt_aggregated_deps.*",
+                    "*_HiltModules_*",
                     "*_Factory",
                     "*JsonAdapter",
                     "*.CleanArchitectureApp"

@@ -21,6 +21,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class SearchBarViewModelTest {
@@ -66,6 +68,7 @@ class SearchBarViewModelTest {
         // Then
         coVerify { saveSearchUseCase(query) }
         assertEquals(SearchBarUiState.SearchSaved, viewModel.uiState.value)
+        assertFalse(viewModel.isSaveSearchInProgress())
     }
 
     @Test
@@ -83,6 +86,7 @@ class SearchBarViewModelTest {
         // Then
         coVerify(exactly = 1) { saveSearchUseCase(query) }
         assertEquals(SearchBarUiState.Default, viewModel.uiState.value)
+        assertTrue(viewModel.isSaveSearchInProgress())
     }
 
     @Test
