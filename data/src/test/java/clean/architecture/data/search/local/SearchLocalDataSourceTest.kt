@@ -7,6 +7,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
+import kotlin.test.assertEquals
 
 class SearchLocalDataSourceTest {
 
@@ -14,7 +15,22 @@ class SearchLocalDataSourceTest {
     private val dataSource = SearchLocalDataSource(searchDao)
 
     @Test
-    fun `when save search, given entity, then call dao insert`() = runTest {
+    fun `when getting search, given text, then call dao get by text`() = runTest {
+        // Given
+        val text = "test"
+        val entity = _entity.copy(searchText = text)
+        coEvery { searchDao.getByText(text) } returns entity
+
+        // When
+        val result = dataSource.getSearch(text)
+
+        // Then
+        assertEquals(entity, result)
+        coVerify { searchDao.getByText(text) }
+    }
+
+    @Test
+    fun `when saving search, given entity, then call dao insert`() = runTest {
         // Given
         val entity = _entity.copy()
         coEvery { searchDao.insert(entity) } returns Unit

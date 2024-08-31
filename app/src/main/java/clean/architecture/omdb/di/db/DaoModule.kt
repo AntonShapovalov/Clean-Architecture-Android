@@ -13,13 +13,13 @@ import javax.inject.Singleton
  */
 @Module
 @InstallIn(SingletonComponent::class)
-class DaoModule {
+object DaoModule {
 
     /**
      * Provides the [SearchDao] instance.
      */
-    @Singleton
     @Provides
+    @Singleton
     fun provideSearchDao(movieDatabase: MovieDatabase): SearchDao {
         return movieDatabase.searchDao()
     }

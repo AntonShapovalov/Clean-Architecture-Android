@@ -4,10 +4,12 @@ import clean.architecture.data.BuildConfig
 import clean.architecture.data.api.ApiService
 import clean.architecture.data.api.model.Movie
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Remote data source to fetch movies data from the remote API.
  */
+@Singleton
 class MovieRemoteDataSource @Inject constructor(
     private val apiService: ApiService
 ) {

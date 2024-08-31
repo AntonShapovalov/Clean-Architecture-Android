@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Clean Architecture</string>
+    <string name="search_button_text">Search</string>">
+    <string name="search_validation_empty_text">The search text is empty</string>
+    <string name="search_validation_short_text">The search text is too short</string>
+    <string name="search_validation_long_text">The search text is too long</string>
+    <string name="search_validation_invalid_characters">The search text should only contain letters, numbers, and spaces</string>
 </resources>

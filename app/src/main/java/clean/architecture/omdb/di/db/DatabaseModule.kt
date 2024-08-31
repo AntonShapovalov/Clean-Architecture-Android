@@ -17,13 +17,13 @@ import javax.inject.Singleton
  */
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule {
+object DatabaseModule {
 
     /**
      * Provides singleton instance of [MovieDatabase].
      */
-    @Singleton
     @Provides
+    @Singleton
     fun provideMovieDatabase(@ApplicationContext context: Context): MovieDatabase {
         val builder = Room.databaseBuilder(
             context.applicationContext,

@@ -3,10 +3,12 @@ package clean.architecture.data.search.local
 import clean.architecture.data.db.dao.SearchDao
 import clean.architecture.data.db.entity.SearchEntity
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Local data source to save search history to the local database.
  */
+@Singleton
 class SearchLocalDataSource @Inject constructor(
     private val searchDao: SearchDao
 ) {

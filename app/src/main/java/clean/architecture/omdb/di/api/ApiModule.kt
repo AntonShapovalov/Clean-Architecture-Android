@@ -18,13 +18,15 @@ import javax.inject.Singleton
  */
 @Module
 @InstallIn(SingletonComponent::class)
-class ApiModule {
+object ApiModule {
+
+    private const val BASE_URL = "https://www.omdbapi.com/"
 
     /**
      * Provides singleton instance of [ApiService].
      */
-    @Singleton
     @Provides
+    @Singleton
     fun provideApiService(): ApiService {
         val client = buildClient()
         val moshi = buildMoshi()
@@ -54,8 +56,4 @@ class ApiModule {
     }
 
     private fun buildMoshi(): Moshi = Moshi.Builder().build()
-
-    private companion object {
-        const val BASE_URL = "https://www.omdbapi.com/"
-    }
 }
