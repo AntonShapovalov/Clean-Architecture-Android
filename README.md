@@ -8,10 +8,7 @@ Project demonstrates `how to` build domain driven clean architecture using Andro
 Overall, the application architecture provides a solid foundation for building a clean and maintainable code. It emphasizes the importance of separating concerns, isolating the core business logic, and making the code testable and reusable.
 
 #### Independent Business Logic in Domain Layer
-* This is a core principle of clean architecture. The domain layer contains the core business rules and logic, independent of any external frameworks or technologies. This makes it easier to test and maintain.
-
-#### Encapsulated Domain Layer
-* The domain layer is encapsulated, meaning it should not have any dependencies on external frameworks or technologies. This further isolates the core business logic and makes it more reusable.
+* This is a core principle of clean architecture. The domain layer encapsulates the core business rules and logic, independent of any external frameworks or technologies. This makes it easier to test and maintain.
 
 #### Unit Testability
 * The absence of external dependencies in the domain layer makes it easier to write unit tests that quickly and reliably verify the correctness of the business logic.
