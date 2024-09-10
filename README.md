@@ -20,7 +20,7 @@ Overall, the application architecture provides a solid foundation for building a
 * The app layer primarily focus on presenting data to the user and passing events to the data layer. It also observes data streams to update the UI as needed. This separation of concerns helps to keep the app layer clean and focused.
 
 #### Single Responsibility Principle
-* Each layer and class has a well-defined purpose and a clear separation of concerns. This makes the code easier to understand, maintain, and extend.
+* Each layer and class has a well-defined purpose and a clear separation of concerns. Data layer only provides data, domain layer applies data transformations, app layer only displays data. This makes the code easier to understand, maintain, and extend.
 * The single responsibility principle is applied to each class, meaning that a class should have only one reason to change. This helps to keep classes focused and manageable. For example, view only displays data, view-model only keeps UI state and so on.
 
 #### Dependency Inversion
