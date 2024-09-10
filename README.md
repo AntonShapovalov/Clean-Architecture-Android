@@ -71,7 +71,7 @@ graph TD
             DomainModels(Domain Models)
         end
         DomainUnitTests(Unit Tests):::green
-        DomainDependencies(No exrernal dependencies):::red
+        DomainDependencies(No external dependencies):::red
     end
 
     subgraph DATA[Data module]
@@ -80,7 +80,7 @@ graph TD
         DataDependencies(Data Dependencies):::red
         subgraph DataClasses[Classes]
             direction TB
-            RepositoriesImpl(Repositories Implementaions)
+            RepositoriesImpl(Repositories Implementations)
             DataSources(Data Sources)
             RemoteModels(Remote Models)
             LocalModels(Local Entities)
