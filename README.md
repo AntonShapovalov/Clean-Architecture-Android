@@ -20,8 +20,8 @@ Overall, the application architecture provides a solid foundation for building a
 * The app layer primarily focus on presenting data to the user and passing events to the data layer. It also observes data streams to update the UI as needed. This separation of concerns helps to keep the app layer clean and focused.
 
 #### Single Responsibility Principle
-* Each layer and class has a well-defined purpose and a clear separation of concerns. Data layer only provides data, domain layer applies data transformations, app layer only displays data. This makes the code easier to understand, maintain, and extend.
-* The single responsibility principle is applied to each class, meaning that a class should have only one reason to change. This helps to keep classes focused and manageable. For example, view only displays data, view-model only keeps UI state and so on.
+* Each layer and class has a well-defined purpose and [structure](#modules-structure). Data layer only provides data, domain layer applies data transformations and app layer only displays data. This makes the code easier to understand, maintain, and extend.
+* The single responsibility principle is applied to each class, meaning that a class has only one reason to change. This helps to keep classes focused and manageable. For example, view only displays data, view-model only keeps UI state and so on.
 
 #### Dependency Inversion
 * The dependency inversion principle ensures that the domain layer does not depend on the data or app layer, but rather the other layers depend on the domain layer. This makes the code more flexible and testable.
@@ -33,8 +33,8 @@ As the Kover report indicates, all the business logic is encapsulated inside dom
 
 ### Modules structure
 Application contains three modules:
-- **app** - Android module with UI and framework dependencies, e.g. JetPack Compose
-- **data** - Android module with data dependencies, e.g. Retrofit to get data from a remote API
+- **app** - Android module with UI and framework dependencies, e.g. JetPack Compose to display views
+- **data** - Android module with data dependencies, e.g. Retrofit to get data from the remote API
 - **domain** - pure Java/Kotlin module without any external dependencies
 
 ```mermaid
@@ -64,19 +64,28 @@ graph TD
 
     subgraph DOMAIN[Domain module]
         direction LR
-        DomainUnitTests(Unit Tests):::green
-        DomainDependencies(No exrernal dependencies):::red
         subgraph DomainClasses[Classes]
         direction TB
             UseCases(Use Cases)
             Repositories(Repositories Interfaces)
             DomainModels(Domain Models)
         end
+        DomainUnitTests(Unit Tests):::green
+        DomainDependencies(No exrernal dependencies):::red
     end
 
     subgraph DATA[Data module]
         direction LR
-        DataClasses(Classes)
+        DataClassesTests(Unit Tests):::green
+        DataDependencies(Data Dependencies):::red
+        subgraph DataClasses[Classes]
+            direction TB
+            RepositoriesImpl(Repositories Implementaions)
+            DataSources(Data Sources)
+            RemoteModels(Remote Models)
+            LocalModels(Local Entities)
+            DAO(DAO)
+        end
     end
 
     APP--depends on-->DOMAIN
