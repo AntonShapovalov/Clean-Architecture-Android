@@ -55,7 +55,7 @@ graph TD
         subgraph AppClasses[Classes]
             direction TB
             Views(Views)
-            ViewModels(View Models)
+            ViewModels(View-Models)
             UiModels(Ui Models)
             DI(DI Modules)
             Android(Android Classes)
@@ -64,7 +64,14 @@ graph TD
 
     subgraph DOMAIN[Domain module]
         direction LR
-        DomainClasses(Classes)
+        DomainUnitTests(Unit Tests):::green
+        DomainDependencies(No exrernal dependencies):::red
+        subgraph DomainClasses[Classes]
+        direction TB
+            UseCases(Use Cases)
+            Repositories(Repositories Interfaces)
+            DomainModels(Domain Models)
+        end
     end
 
     subgraph DATA[Data module]
