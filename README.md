@@ -30,3 +30,51 @@ Overall, the application architecture provides a solid foundation for building a
 ![link](screenshots/kover-report.png)
 
 As the Kover report indicates, all the business logic is encapsulated inside domain use cases and fully covered with unit tests.
+
+### Modules structure
+Application contains three modules:
+- **app** - Android module with UI and framework dependencies, e.g. JetPack Compose
+- **data** - Android module with data dependencies, e.g. Retrofit to get data from a remote API
+- **domain** - pure Java/Kotlin module without any external dependencies
+
+```mermaid
+graph TD
+    subgraph APP[App module]
+        direction LR
+        subgraph AppDependencies[Dependencies]
+        direction TB
+            AndroidDependencies(Android Dependencies):::red
+            UiDependencies(Ui Dependencies):::red
+        end
+        subgraph AppTests[Tests]
+            direction TB
+            AppUnitTests(Unit Tests):::green
+            IntegrationTests(Integration Tests):::green
+            E2ETests(End-To-End Tests):::green
+        end
+        subgraph AppClasses[Classes]
+            direction TB
+            Views(Views)
+            ViewModels(View Models)
+            UiModels(Ui Models)
+            DI(DI Modules)
+            Android(Android Classes)
+        end
+    end
+
+    subgraph DOMAIN[Domain module]
+        direction LR
+        DomainClasses(Classes)
+    end
+
+    subgraph DATA[Data module]
+        direction LR
+        DataClasses(Classes)
+    end
+
+    APP--depends on-->DOMAIN
+    DATA--depends on-->DOMAIN
+    
+    classDef green fill:#90EE90
+    classDef red fill:#FFB6C1
+```
