@@ -42,7 +42,7 @@ graph TD
     subgraph APP[App module]
         direction LR
         subgraph AppDependencies[Dependencies]
-        direction TB
+            direction TB
             AndroidDependencies(Android Dependencies):::red
             UiDependencies(Ui Dependencies):::red
         end
@@ -65,7 +65,7 @@ graph TD
     subgraph DOMAIN[Domain module]
         direction LR
         subgraph DomainClasses[Classes]
-        direction TB
+            direction TB
             UseCases(Use Cases)
             Repositories(Repositories Interfaces)
             DomainModels(Domain Models)
