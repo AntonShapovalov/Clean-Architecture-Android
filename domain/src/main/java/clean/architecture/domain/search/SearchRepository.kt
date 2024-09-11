@@ -10,7 +10,7 @@ interface SearchRepository {
     /**
      * Get search by text.
      *
-     * @param text Text to search.
+     * @param text Query text.
      *
      * @return Search or null if not found.
      */
@@ -19,7 +19,7 @@ interface SearchRepository {
     /**
      * Save search.
      *
-     * @param search Search to save.
+     * @param search Search to save in local database
      */
     suspend fun saveSearch(search: Search)
 }

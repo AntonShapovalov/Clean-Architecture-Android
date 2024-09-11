@@ -9,7 +9,6 @@ import clean.architecture.omdb.ui.search.bar.view.SearchBar
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,7 +24,6 @@ class SearchBarViewModel @Inject constructor(
     private val dispatcherIO: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
-    private var job: Job? = null
     private val _uiState = MutableStateFlow<SearchBarUiState>(SearchBarUiState.Default)
 
     /**
@@ -39,14 +37,10 @@ class SearchBarViewModel @Inject constructor(
      * @param query The search query.
      */
     fun saveSearch(query: String) {
-        if (isSaveSearchInProgress()) return
-        job = viewModelScope.launch(dispatcherIO) {
+        if (_uiState.value == SearchBarUiState.SavingInProgress) return
+        _uiState.value = SearchBarUiState.SavingInProgress
+        viewModelScope.launch(dispatcherIO) {
             _uiState.value = saveSearchUseCase(query).toUiState()
         }
     }
-
-    /**
-     * Checks if a save search operation is in progress.
-     */
-    fun isSaveSearchInProgress(): Boolean = job?.isActive == true
 }

@@ -82,9 +82,9 @@ graph TD
             direction TB
             RepositoriesImpl(Repositories Implementations)
             DataSources(Data Sources)
-            RemoteModels(Remote Models)
-            LocalModels(Local Entities)
-            DAO(DAO)
+            RemoteAPI(Remote API)
+            LocalDB(Local DB)
+            DataModels(Data Models)
         end
     end
 

@@ -10,6 +10,11 @@ sealed class SearchBarUiState {
     data object Default : SearchBarUiState()
 
     /**
+     * Represents the state when a save search operation is in progress.
+     */
+    data object SavingInProgress : SearchBarUiState()
+
+    /**
      * Represents the validation error state of the search bar.
      *
      * @param resId The resource ID of the error message.
