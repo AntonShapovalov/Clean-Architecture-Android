@@ -57,7 +57,7 @@ graph TD
             Views(Views)
             ViewModels(View-Models)
             UiModels(Ui Models)
-            DI(DI Modules)
+            DI(Dependencies Injections)
             Android(Android Classes)
         end
     end
@@ -71,7 +71,6 @@ graph TD
             DomainModels(Domain Models)
         end
         DomainUnitTests(Unit Tests):::green
-        DomainDependencies(No external dependencies):::red
     end
 
     subgraph DATA[Data module]
