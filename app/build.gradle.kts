@@ -9,7 +9,7 @@ plugins {
     alias(libs.plugins.kover)
 }
 
-apply(from = rootProject.file("/gradle/kover/kover.gradle"))
+apply(from = rootProject.file("gradle/kover/kover.gradle"))
 
 android {
     namespace = "clean.architecture.omdb"

@@ -4,9 +4,9 @@ apply {
 
 detekt {
     toolVersion = rootProject.libs.versions.detekt.get()
-    config.setFrom(rootProject.file("/config/detekt/detekt.yml"))
-    autoCorrect = true
+    config.setFrom(rootProject.file("config/detekt/detekt.yml"))
     buildUponDefaultConfig = true
+    autoCorrect = true
 }
 
 dependencies {
