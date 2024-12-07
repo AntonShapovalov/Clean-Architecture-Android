@@ -2,7 +2,7 @@ package clean.architecture.data.movie.remote
 
 import clean.architecture.data.BuildConfig
 import clean.architecture.data.api.ApiService
-import clean.architecture.data.api.model.Movie
+import clean.architecture.data.api.model.SearchResponse.Movie
 import javax.inject.Inject
 import javax.inject.Singleton
 
