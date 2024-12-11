@@ -1,6 +1,7 @@
 package clean.architecture.data.movie.remote
 
 import clean.architecture.data.api.ApiService
+import clean.architecture.data.api.config.ApiConfig
 import clean.architecture.data.api.model.SearchResponse
 import clean.architecture.data.api.model.SearchResponse.Movie
 import io.mockk.coEvery
@@ -18,9 +19,10 @@ class MovieRemoteDataSourceTest {
     @Test
     fun `when getting movies, given search response, then return list of movies`() = runTest {
         // Given
+        ApiConfig.setApiKey("testKey")
         val movie = _movie.copy()
         val search = _searchResponse.copy(movies = listOf(movie))
-        coEvery { apiService.search(any(), "test") } returns search
+        coEvery { apiService.search(apiKey = "testKey", title = "test") } returns search
 
         // When
         val result = dataSource.getMovies("test")
@@ -32,8 +34,9 @@ class MovieRemoteDataSourceTest {
     @Test
     fun `when getting movies, given search with null movies, then return empty list`() = runTest {
         // Given
+        ApiConfig.setApiKey("testKey")
         val search = _searchResponse.copy(movies = null)
-        coEvery { apiService.search(any(), "test") } returns search
+        coEvery { apiService.search(apiKey = "testKey", title = "test") } returns search
 
         // When
         val result = dataSource.getMovies("test")

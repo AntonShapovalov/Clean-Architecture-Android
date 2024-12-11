@@ -1,7 +1,7 @@
 package clean.architecture.data.movie.remote
 
-import clean.architecture.data.BuildConfig
 import clean.architecture.data.api.ApiService
+import clean.architecture.data.api.config.ApiConfig
 import clean.architecture.data.api.model.SearchResponse.Movie
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,5 +22,5 @@ class MovieRemoteDataSource @Inject constructor(
      * @return The list of [Movie].
      */
     suspend fun getMovies(title: String): List<Movie> = apiService
-        .search(BuildConfig.API_KEY, title).movies ?: emptyList()
+        .search(ApiConfig.apiKey, title).movies ?: emptyList()
 }

@@ -1,6 +1,7 @@
 package clean.architecture.omdb.di.api
 
 import clean.architecture.data.api.ApiService
+import clean.architecture.data.api.config.ApiConfig
 import clean.architecture.omdb.BuildConfig
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -20,8 +21,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object ApiModule {
 
-    private const val BASE_URL = "https://www.omdbapi.com/"
-
     /**
      * Provides singleton instance of [ApiService].
      */
@@ -38,7 +37,7 @@ object ApiModule {
         client: OkHttpClient,
         moshi: Moshi
     ): Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(ApiConfig.baseUrl)
         .client(client)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
