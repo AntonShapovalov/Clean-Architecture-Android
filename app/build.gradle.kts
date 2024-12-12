@@ -91,12 +91,15 @@ dependencies {
     implementation(libs.moshi.kotlin)
     ksp(libs.moshi.kotlin.codegen)
 
-    // Unit testing
+    // Unit/Integration testing
     testImplementation(libs.kotlin.test)
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.mockk.android)
     testImplementation(libs.mockk.agent)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.mock.web.server)
+    testImplementation(libs.hilt.android.testing)
     testImplementation(libs.kotlinx.coroutines.test)
 
     // Instrumentation testing

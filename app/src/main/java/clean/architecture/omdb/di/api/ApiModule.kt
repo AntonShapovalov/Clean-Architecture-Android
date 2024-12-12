@@ -26,12 +26,17 @@ object ApiModule {
      */
     @Provides
     @Singleton
-    fun provideApiService(): ApiService {
+    fun provideApiService(moshi: Moshi): ApiService {
         val client = buildClient()
-        val moshi = buildMoshi()
         val retrofit = buildRetrofit(client, moshi)
         return retrofit.create(ApiService::class.java)
     }
+
+    /**
+     * Factory method to provide instance of [Moshi].
+     */
+    @Provides
+    fun provideMoshi(): Moshi = Moshi.Builder().build()
 
     private fun buildRetrofit(
         client: OkHttpClient,
@@ -53,6 +58,4 @@ object ApiModule {
             HttpLoggingInterceptor.Level.NONE
         }
     }
-
-    private fun buildMoshi(): Moshi = Moshi.Builder().build()
 }
