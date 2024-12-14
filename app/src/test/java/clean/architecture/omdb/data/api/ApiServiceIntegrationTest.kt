@@ -2,9 +2,9 @@ package clean.architecture.omdb.data.api
 
 import clean.architecture.data.api.ApiService
 import clean.architecture.data.api.config.ApiConfig
-import clean.architecture.data.api.model.SearchResponse
-import clean.architecture.data.api.model.SearchResponse.Movie
-import com.squareup.moshi.JsonAdapter
+import clean.architecture.data.api.model.MovieInfoResponse
+import clean.architecture.data.api.model.MoviesSearchResponse
+import clean.architecture.data.api.model.MoviesSearchResponse.Movie
 import com.squareup.moshi.Moshi
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -38,13 +38,10 @@ class ApiServiceIntegrationTest {
     @Inject
     lateinit var moshi: Moshi
 
-    private lateinit var jsonAdapter: JsonAdapter<SearchResponse>
-
     @Before
     fun init() {
         ApiConfig.setBaseUrl(mockWebServer.url("/").toString())
         hiltRule.inject()
-        jsonAdapter = moshi.adapter(SearchResponse::class.java)
     }
 
     @Test
@@ -52,6 +49,7 @@ class ApiServiceIntegrationTest {
         // Given
         val movie = _movie.copy(title = "test")
         val search = _searchResponse.copy(movies = listOf(movie))
+        val jsonAdapter = moshi.adapter(MoviesSearchResponse::class.java)
         val json = jsonAdapter.toJson(search)
         val mockResponse = MockResponse()
             .setBody(json)
@@ -60,10 +58,29 @@ class ApiServiceIntegrationTest {
         mockWebServer.enqueue(mockResponse)
 
         // When
-        val result = apiService.search(apiKey = "testKey", title = "test")
+        val result = apiService.searchMovies(apiKey = "testKey", title = "test")
 
         // Then
         assertEquals(listOf(movie), result.movies)
+    }
+
+    @Test
+    fun `when getting movie info, given movie info response, then return movie info`() = runTest {
+        // Given
+        val movieInfo = _movieInfoResponse.copy(imdbID = "test123")
+        val jsonAdapter = moshi.adapter(MovieInfoResponse::class.java)
+        val json = jsonAdapter.toJson(movieInfo)
+        val mockResponse = MockResponse()
+            .setBody(json)
+            .setResponseCode(200)
+            .addHeader("Content-Type", "application/json")
+        mockWebServer.enqueue(mockResponse)
+
+        // When
+        val result = apiService.getMovieInfo(apiKey = "testKey", imdbID = "test123")
+
+        // Then
+        assertEquals(movieInfo, result)
     }
 
     private val _movie = Movie(
@@ -74,9 +91,22 @@ class ApiServiceIntegrationTest {
         poster = ""
     )
 
-    private val _searchResponse = SearchResponse(
+    private val _searchResponse = MoviesSearchResponse(
         movies = emptyList(),
         totalResults = "",
         response = ""
+    )
+
+    private val _movieInfoResponse = MovieInfoResponse(
+        title = "",
+        year = "",
+        genre = "",
+        director = "",
+        actors = "",
+        plot = "",
+        poster = "",
+        metaScore = "",
+        imdbRating = "",
+        imdbID = ""
     )
 }

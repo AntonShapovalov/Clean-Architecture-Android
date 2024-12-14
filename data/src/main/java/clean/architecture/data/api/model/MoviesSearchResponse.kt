@@ -11,7 +11,7 @@ import com.squareup.moshi.JsonClass
  * @param response The boolean flag indicating whether the search was successful.
  */
 @JsonClass(generateAdapter = true)
-data class SearchResponse(
+data class MoviesSearchResponse(
     @Json(name = "Search") val movies: List<Movie>?,
     @Json(name = "totalResults") val totalResults: String?,
     @Json(name = "Response") val response: String?

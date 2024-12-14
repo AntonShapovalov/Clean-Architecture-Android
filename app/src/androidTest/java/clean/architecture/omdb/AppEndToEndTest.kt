@@ -13,17 +13,15 @@ import javax.inject.Inject
 import kotlin.test.assertTrue
 
 /**
- * Instrumented test, which will execute on an Android device.
- * This test should not be a part of CI/CD pipeline.
- * Rather it should be executed manually to check API key is valid.
- * To check Hilt and Retrofit setup, see "ApiServiceIntegrationTest".
+ * Instrumented end to end test is executed on real Android device with real API,
+ * without mocking any of inner or external dependencies.
  *
  * See [testing documentation](http://d.android.com/tools/testing) and
  * [hilt](https://developer.android.com/training/dependency-injection/hilt-testing#end-to-end).
  */
 @RunWith(AndroidJUnit4::class)
 @HiltAndroidTest
-class ApiEndToEndTest {
+class AppEndToEndTest {
 
     @get:Rule
     var hiltRule = HiltAndroidRule(this)

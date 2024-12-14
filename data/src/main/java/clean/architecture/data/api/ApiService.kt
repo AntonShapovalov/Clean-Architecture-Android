@@ -1,6 +1,7 @@
 package clean.architecture.data.api
 
-import clean.architecture.data.api.model.SearchResponse
+import clean.architecture.data.api.model.MovieInfoResponse
+import clean.architecture.data.api.model.MoviesSearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -15,11 +16,25 @@ interface ApiService {
      * @param apiKey The API key for authentication.
      * @param title The title of the movie to search for.
      *
-     * @return A [SearchResponse] object containing the list of movies.
+     * @return A [MoviesSearchResponse] object containing the list of movies.
      */
     @GET("/.")
-    suspend fun search(
+    suspend fun searchMovies(
         @Query("apikey") apiKey: String,
         @Query("s") title: String
-    ): SearchResponse
+    ): MoviesSearchResponse
+
+    /**
+     * Retrieves information about a movie by its IMDB ID.
+     *
+     * @param apiKey The API key for authentication.
+     * @param imdbID The IMDB ID of the movie to retrieve.
+     *
+     * @return A [MovieInfoResponse] object containing the movie information.
+     */
+    @GET("/.")
+    suspend fun getMovieInfo(
+        @Query("apikey") apiKey: String,
+        @Query("i") imdbID: String
+    ): MovieInfoResponse
 }
