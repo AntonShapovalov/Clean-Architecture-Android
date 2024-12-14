@@ -1,8 +1,12 @@
 # Clean Architecture for Android
-> [!NOTE]
-> Work in progress... The project is going to rebuild [OpenMovieDB](https://github.com/AntonShapovalov/Open-Movie-DB) using Clean Architecture, Kotlin Coroutines and JetPack Compose.
+Project demonstrates `how to` build domain driven clean architecture using Kotlin Coroutines, JetPack Compose and Android MVVM approach. 
 
-Project demonstrates `how to` build domain driven clean architecture using Android MVVM approach. 
+> [!NOTE]
+> Work in progress...
+> App is going to searh movies using [OMDB API](https://www.omdbapi.com) and contains three screens:
+> 1. Movies list - in progress
+> 2. Search history - in progress
+> 3. Movie details - planned
 
 ### Key points
 Overall, the application architecture provides a solid foundation for building a clean and maintainable code. It emphasizes the importance of separating concerns, isolating the core business logic, and making the code testable and reusable.
