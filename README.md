@@ -3,7 +3,7 @@ Project demonstrates `how to` build domain driven clean architecture using Kotli
 
 > [!NOTE]
 > Work in progress...
-> App is going to searh movies using [OMDB API](https://www.omdbapi.com) and contains three screens:
+> App is going to search movies using [OMDB API](https://www.omdbapi.com) and contains three screens:
 > 1. Movies list - in progress
 > 2. Search history - in progress
 > 3. Movie details - planned
