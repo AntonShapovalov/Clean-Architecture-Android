@@ -44,14 +44,11 @@ jobs:
         mkdir -p docs
         cp -r app/build/reports/kover/html/* docs/
 
-    - name: Commit and push changes to docs branch
+    - name: Commit and force push changes to docs branch
       run: |
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git checkout -b docs || git checkout docs
-        git stash # Stash any changes
-        git pull --rebase origin docs
-        git stash pop || echo "No changes to apply from stash"
         git add docs
         git commit -m "Update Kover report" || echo "No changes to commit"
-        git push origin docs
+        git push origin docs --force
