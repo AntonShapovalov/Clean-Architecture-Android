@@ -49,7 +49,9 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git checkout -b docs || git checkout docs
+        git stash # Stash any changes
         git pull --rebase origin docs
+        git stash pop || echo "No changes to apply from stash"
         git add docs
         git commit -m "Update Kover report" || echo "No changes to commit"
         git push origin docs
