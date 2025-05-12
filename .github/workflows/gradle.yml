@@ -37,4 +37,19 @@ jobs:
       run: chmod +x ./gradlew
 
     - name: Build with Gradle Wrapper
-      run: ./gradlew build detekt
+      run: ./gradlew build detekt koverHtmlReport
+
+    - name: Copy Kover report to docs directory
+      run: |
+        mkdir -p docs
+        cp -r app/build/reports/kover/html/* docs/
+
+    - name: Commit and push changes to docs branch
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git checkout -b docs || git checkout docs
+        git pull origin docs
+        git add docs
+        git commit -m "Update Kover report" || echo "No changes to commit"
+        git push origin docs
