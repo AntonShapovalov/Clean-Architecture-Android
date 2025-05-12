@@ -33,7 +33,7 @@ Overall, the application architecture provides a solid foundation for building a
 ### Test coverage
 ![link](screenshots/kover-report.png)
 
-As the Kover report indicates, all the business logic is encapsulated inside domain use cases and fully covered with unit tests.
+As the [Kover report](https://antonshapovalov.github.io/Clean-Architecture-Android/) indicates, all the business logic is encapsulated inside domain use cases and fully covered with unit tests.
 
 ### Modules structure
 Application contains three modules:
