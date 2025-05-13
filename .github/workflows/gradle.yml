@@ -15,14 +15,11 @@ on:
   pull_request:
     branches: [ "master" ]
 
-permissions:
-  contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
 
     steps:
     - uses: actions/checkout@v4
@@ -50,7 +47,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git checkout -b docs || git checkout docs
-        cp -r app/build/reports/kover/html/* docs/
+        cp -rf app/build/reports/kover/html/* docs/
         git add docs
         git commit -m "Update Kover report" || echo "No changes to commit"
         git push origin docs
