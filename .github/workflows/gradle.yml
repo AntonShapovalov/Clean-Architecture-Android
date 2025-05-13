@@ -44,7 +44,9 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git checkout -b docs || git checkout docs
+        git stash
         git pull --rebase origin docs
+        git stash pop || echo "No stashed changes to apply"
         rm -rf docs
         mkdir docs
         cp -rf app/build/reports/kover/html/* docs/
