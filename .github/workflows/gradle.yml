@@ -7,7 +7,7 @@
 # Step "Setup Gradle" is used to configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
 # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
 
-name: Validation
+name: generate-test-coverage-report
 
 on:
   push:
@@ -43,13 +43,10 @@ jobs:
       run: |
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
-        git checkout -b docs || git checkout docs
-        git stash
-        git pull --rebase origin docs
-        git stash pop || echo "No stashed changes to apply"
+        git checkout -b docs
         rm -rf docs
         mkdir docs
         cp -rf app/build/reports/kover/html/* docs/
         git add docs
         git commit -m "Update Kover report" || echo "No changes to commit"
-        git push origin docs
+        git push -f origin docs
