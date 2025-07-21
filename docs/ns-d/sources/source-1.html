@@ -1,0 +1,113 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > ApiService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">clean.architecture.data.api</a>
+</div>
+
+<h1>Coverage Summary for Class: ApiService (clean.architecture.data.api)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+</tr>
+<tr>
+  <td class="name">ApiService</td>
+    <td class="coverageStat"/>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package clean.architecture.data.api
+&nbsp;
+&nbsp;import clean.architecture.data.api.model.MovieInfoResponse
+&nbsp;import clean.architecture.data.api.model.MoviesSearchResponse
+&nbsp;import retrofit2.http.GET
+&nbsp;import retrofit2.http.Query
+&nbsp;
+&nbsp;/**
+&nbsp; * Retrofit interface for API calls.
+&nbsp; */
+&nbsp;interface ApiService {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Searches for movies by title.
+&nbsp;     *
+&nbsp;     * @param apiKey The API key for authentication.
+&nbsp;     * @param title The title of the movie to search for.
+&nbsp;     *
+&nbsp;     * @return A [MoviesSearchResponse] object containing the list of movies.
+&nbsp;     */
+&nbsp;    @GET(&quot;/.&quot;)
+&nbsp;    suspend fun searchMovies(
+&nbsp;        @Query(&quot;apikey&quot;) apiKey: String,
+&nbsp;        @Query(&quot;s&quot;) title: String
+&nbsp;    ): MoviesSearchResponse
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieves information about a movie by its IMDB ID.
+&nbsp;     *
+&nbsp;     * @param apiKey The API key for authentication.
+&nbsp;     * @param imdbID The IMDB ID of the movie to retrieve.
+&nbsp;     *
+&nbsp;     * @return A [MovieInfoResponse] object containing the movie information.
+&nbsp;     */
+&nbsp;    @GET(&quot;/.&quot;)
+&nbsp;    suspend fun getMovieInfo(
+&nbsp;        @Query(&quot;apikey&quot;) apiKey: String,
+&nbsp;        @Query(&quot;i&quot;) imdbID: String
+&nbsp;    ): MovieInfoResponse
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-07-21 16:54</div>
+</div>
+</body>
+</html>

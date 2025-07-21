@@ -1,0 +1,170 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > ApiConfig</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">clean.architecture.data.api.config</a>
+</div>
+
+<h1>Coverage Summary for Class: ApiConfig (clean.architecture.data.api.config)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+<th class="coverageStat 
+">
+  Instruction, %
+</th>
+</tr>
+<tr>
+  <td class="name">ApiConfig</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package clean.architecture.data.api.config
+&nbsp;
+&nbsp;import clean.architecture.data.BuildConfig
+&nbsp;
+&nbsp;/**
+&nbsp; * Configuration properties for the API.
+&nbsp; * Allows to set mock properties for integration testing.
+&nbsp; */
+&nbsp;object ApiConfig {
+&nbsp;    private const val BASE_URL = &quot;https://www.omdbapi.com/&quot;
+&nbsp;
+&nbsp;    private var _baseUrl: String? = null
+&nbsp;    private var _apiKey: String? = null
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The base URL of the API.
+&nbsp;     */
+<b class="fc">&nbsp;    val baseUrl: String get() = _baseUrl ?: BASE_URL</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The API key for authentication.
+&nbsp;     */
+<b class="fc">&nbsp;    val apiKey: String get() = _apiKey ?: BuildConfig.API_KEY</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets the base URL.
+&nbsp;     *
+&nbsp;     * @param baseUrl The base URL of the API.
+&nbsp;     */
+&nbsp;    fun setBaseUrl(baseUrl: String) {
+<b class="fc">&nbsp;        _baseUrl = baseUrl</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Sets the API key.
+&nbsp;     *
+&nbsp;     * @param apiKey The API key for authentication.
+&nbsp;     */
+&nbsp;    fun setApiKey(apiKey: String) {
+<b class="fc">&nbsp;        _apiKey = apiKey</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-07-21 16:54</div>
+</div>
+</body>
+</html>

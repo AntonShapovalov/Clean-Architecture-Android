@@ -1,0 +1,173 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>app Coverage Report > SearchBarKt</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope: app<span class="separator">|</span>    <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">clean.architecture.omdb.ui.search.bar.view</a>
+</div>
+
+<h1>Coverage Summary for Class: SearchBarKt (clean.architecture.omdb.ui.search.bar.view)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+</tr>
+<tr>
+  <td class="name">SearchBarKt</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+    <td class="coverageStat"/>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package clean.architecture.omdb.ui.search.bar.view
+&nbsp;
+&nbsp;import androidx.compose.foundation.layout.Column
+&nbsp;import androidx.compose.foundation.layout.Row
+&nbsp;import androidx.compose.foundation.layout.Spacer
+&nbsp;import androidx.compose.foundation.layout.padding
+&nbsp;import androidx.compose.foundation.layout.width
+&nbsp;import androidx.compose.material3.Button
+&nbsp;import androidx.compose.material3.MaterialTheme
+&nbsp;import androidx.compose.material3.OutlinedTextField
+&nbsp;import androidx.compose.material3.Text
+&nbsp;import androidx.compose.runtime.Composable
+&nbsp;import androidx.compose.runtime.collectAsState
+&nbsp;import androidx.compose.runtime.getValue
+&nbsp;import androidx.compose.runtime.mutableStateOf
+&nbsp;import androidx.compose.runtime.remember
+&nbsp;import androidx.compose.runtime.setValue
+&nbsp;import androidx.compose.ui.Alignment
+&nbsp;import androidx.compose.ui.Modifier
+&nbsp;import androidx.compose.ui.res.stringResource
+&nbsp;import androidx.compose.ui.tooling.preview.Preview
+&nbsp;import androidx.compose.ui.unit.dp
+&nbsp;import androidx.hilt.navigation.compose.hiltViewModel
+&nbsp;import clean.architecture.omdb.R
+&nbsp;import clean.architecture.omdb.ui.search.bar.SearchBarViewModel
+&nbsp;import clean.architecture.omdb.ui.search.bar.model.SearchBarUiState
+&nbsp;import clean.architecture.omdb.ui.theme.CleanArchitectureTheme
+&nbsp;
+&nbsp;/**
+&nbsp; * Search bar component for the search screen.
+&nbsp; */
+&nbsp;@Composable
+&nbsp;fun SearchBar(
+&nbsp;    modifier: Modifier = Modifier,
+&nbsp;    viewModel: SearchBarViewModel = hiltViewModel(),
+&nbsp;) {
+&nbsp;    val uiState by viewModel.uiState.collectAsState()
+&nbsp;    SearchBarContent(uiState, modifier) { query -&gt; viewModel.saveSearch(query) }
+&nbsp;}
+&nbsp;
+&nbsp;@Composable
+&nbsp;private fun SearchBarContent(
+&nbsp;    uiState: SearchBarUiState,
+&nbsp;    modifier: Modifier = Modifier,
+&nbsp;    onSearchButtonClick: (String) -&gt; Unit,
+&nbsp;) {
+&nbsp;    // TODO - replace with Material3 SearchBar
+&nbsp;    var query by remember { mutableStateOf(&quot;&quot;) }
+&nbsp;    Column(modifier = modifier.padding(16.dp)) {
+&nbsp;        Row(verticalAlignment = Alignment.CenterVertically) {
+&nbsp;            OutlinedTextField(
+&nbsp;                value = query,
+&nbsp;                onValueChange = { value -&gt; query = value },
+&nbsp;                isError = uiState is SearchBarUiState.ValidationError,
+&nbsp;                modifier = Modifier.weight(1f)
+&nbsp;            )
+&nbsp;            Spacer(modifier = Modifier.width(8.dp))
+&nbsp;            Button(onClick = { onSearchButtonClick(query) }) {
+&nbsp;                Text(text = stringResource(R.string.search_button_text))
+&nbsp;            }
+&nbsp;        }
+&nbsp;        if (uiState is SearchBarUiState.ValidationError) {
+&nbsp;            Text(
+&nbsp;                text = stringResource(uiState.resId),
+&nbsp;                color = MaterialTheme.colorScheme.error,
+&nbsp;                style = MaterialTheme.typography.labelSmall
+&nbsp;            )
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;@Preview(showBackground = true)
+&nbsp;@Composable
+&nbsp;private fun SearchBarPreview() {
+&nbsp;    CleanArchitectureTheme(dynamicColor = false) {
+&nbsp;        val uiState = SearchBarUiState.Default
+&nbsp;        SearchBarContent(uiState) {}
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;@Preview(showBackground = true)
+&nbsp;@Composable
+&nbsp;private fun SearchBarErrorPreview() {
+&nbsp;    CleanArchitectureTheme(dynamicColor = false) {
+&nbsp;        val uiState = SearchBarUiState.ValidationError(R.string.search_validation_empty_text)
+&nbsp;        SearchBarContent(uiState) {}
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-07-21 16:54</div>
+</div>
+</body>
+</html>
