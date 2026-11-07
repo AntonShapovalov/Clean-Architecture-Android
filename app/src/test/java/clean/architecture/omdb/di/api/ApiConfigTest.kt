@@ -13,7 +13,7 @@ class ApiConfigTest {
         val expectedApiKey = DataBuildConfig.API_KEY
 
         // When
-        val apiConfig = ApiModule.provideApiConfig()
+        val apiConfig = ApiConfigModule.provideApiConfig()
 
         // Then
         assertEquals(expectedBaseUrl, apiConfig.baseUrl)

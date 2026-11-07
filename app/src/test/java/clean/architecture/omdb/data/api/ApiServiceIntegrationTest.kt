@@ -5,7 +5,7 @@ import clean.architecture.data.api.config.ApiConfig
 import clean.architecture.data.api.model.MovieInfoResponse
 import clean.architecture.data.api.model.MoviesSearchResponse
 import clean.architecture.data.api.model.TestUtils
-import clean.architecture.omdb.di.api.ApiModule
+import clean.architecture.omdb.di.api.ApiConfigModule
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -25,14 +25,13 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import javax.inject.Inject
-import javax.inject.Singleton
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = HiltTestApplication::class)
 @HiltAndroidTest
-@UninstallModules(ApiModule::class)
+@UninstallModules(ApiConfigModule::class)
 class ApiServiceIntegrationTest {
 
     /** Replaces real [ApiConfig] with test values */
@@ -45,14 +44,6 @@ class ApiServiceIntegrationTest {
             baseUrl = mockWebServer.url("/").toString(),
             apiKey = "testKey"
         )
-
-        @Provides
-        @Singleton
-        fun provideApiService(moshi: Moshi, apiConfig: ApiConfig): ApiService =
-            ApiModule.provideApiService(moshi, apiConfig)
-
-        @Provides
-        fun provideMoshi(): Moshi = ApiModule.provideMoshi()
     }
 
     @get:Rule

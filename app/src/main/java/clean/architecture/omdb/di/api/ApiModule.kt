@@ -2,6 +2,7 @@ package clean.architecture.omdb.di.api
 
 import clean.architecture.data.api.ApiService
 import clean.architecture.data.api.config.ApiConfig
+import clean.architecture.omdb.BuildConfig
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -12,8 +13,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
-import clean.architecture.data.BuildConfig as DataBuildConfig
-import clean.architecture.omdb.BuildConfig as AppBuildConfig
 
 /**
  * Hilt module that provides singleton instance of [ApiService].
@@ -21,16 +20,6 @@ import clean.architecture.omdb.BuildConfig as AppBuildConfig
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiModule {
-
-    /**
-     * Provides the production API configuration.
-     */
-    @Provides
-    @Singleton
-    fun provideApiConfig(): ApiConfig = ApiConfig(
-        baseUrl = DataBuildConfig.BASE_URL,
-        apiKey = DataBuildConfig.API_KEY
-    )
 
     /**
      * Provides singleton instance of [ApiService].
@@ -64,7 +53,7 @@ object ApiModule {
         .build()
 
     private fun getLoggingInterceptor() = HttpLoggingInterceptor().apply {
-        level = if (AppBuildConfig.DEBUG) {
+        level = if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor.Level.BODY
         } else {
             HttpLoggingInterceptor.Level.NONE
