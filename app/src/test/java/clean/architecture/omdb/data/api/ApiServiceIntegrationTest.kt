@@ -4,11 +4,18 @@ import clean.architecture.data.api.ApiService
 import clean.architecture.data.api.config.ApiConfig
 import clean.architecture.data.api.model.MovieInfoResponse
 import clean.architecture.data.api.model.MoviesSearchResponse
-import clean.architecture.data.api.model.MoviesSearchResponse.Movie
+import clean.architecture.data.api.model.TestUtils
+import clean.architecture.omdb.di.api.ApiModule
 import com.squareup.moshi.Moshi
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.HiltTestApplication
+import dagger.hilt.android.testing.UninstallModules
+import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.test.runTest
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -18,15 +25,38 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = HiltTestApplication::class)
 @HiltAndroidTest
+@UninstallModules(ApiModule::class)
 class ApiServiceIntegrationTest {
 
+    /** Replaces real [ApiConfig] with test values */
+    @Module
+    @InstallIn(SingletonComponent::class)
+    object ApiServiceIntegrationTestModule {
+
+        @Provides
+        fun provideApiConfig(mockWebServer: MockWebServer): ApiConfig = ApiConfig(
+            baseUrl = mockWebServer.url("/").toString(),
+            apiKey = "testKey"
+        )
+
+        @Provides
+        @Singleton
+        fun provideApiService(moshi: Moshi, apiConfig: ApiConfig): ApiService =
+            ApiModule.provideApiService(moshi, apiConfig)
+
+        @Provides
+        fun provideMoshi(): Moshi = ApiModule.provideMoshi()
+    }
+
     @get:Rule
+    @field:BindValue
     val mockWebServer = MockWebServer()
 
     @get:Rule
@@ -40,15 +70,14 @@ class ApiServiceIntegrationTest {
 
     @Before
     fun init() {
-        ApiConfig.setBaseUrl(mockWebServer.url("/").toString())
         hiltRule.inject()
     }
 
     @Test
     fun `when searching movies, given search response, then return list of movies`() = runTest {
         // Given
-        val movie = _movie.copy(title = "test")
-        val search = _searchResponse.copy(movies = listOf(movie))
+        val movie = TestUtils.movieResponse.copy(title = "test")
+        val search = TestUtils.searchResponse.copy(movies = listOf(movie))
         val jsonAdapter = moshi.adapter(MoviesSearchResponse::class.java)
         val json = jsonAdapter.toJson(search)
         val mockResponse = MockResponse()
@@ -62,12 +91,15 @@ class ApiServiceIntegrationTest {
 
         // Then
         assertEquals(listOf(movie), result.movies)
+        val request = mockWebServer.takeRequest()
+        assertEquals("testKey", request.requestUrl?.queryParameter("apikey"))
+        assertEquals("test", request.requestUrl?.queryParameter("s"))
     }
 
     @Test
     fun `when getting movie info, given movie info response, then return movie info`() = runTest {
         // Given
-        val movieInfo = _movieInfoResponse.copy(imdbID = "test123")
+        val movieInfo = TestUtils.movieInfoResponse.copy(imdbID = "test123")
         val jsonAdapter = moshi.adapter(MovieInfoResponse::class.java)
         val json = jsonAdapter.toJson(movieInfo)
         val mockResponse = MockResponse()
@@ -81,32 +113,8 @@ class ApiServiceIntegrationTest {
 
         // Then
         assertEquals(movieInfo, result)
+        val request = mockWebServer.takeRequest()
+        assertEquals("testKey", request.requestUrl?.queryParameter("apikey"))
+        assertEquals("test123", request.requestUrl?.queryParameter("i"))
     }
-
-    private val _movie = Movie(
-        title = "",
-        year = "",
-        imdbID = "",
-        type = "",
-        poster = ""
-    )
-
-    private val _searchResponse = MoviesSearchResponse(
-        movies = emptyList(),
-        totalResults = "",
-        response = ""
-    )
-
-    private val _movieInfoResponse = MovieInfoResponse(
-        title = "",
-        year = "",
-        genre = "",
-        director = "",
-        actors = "",
-        plot = "",
-        poster = "",
-        metaScore = "",
-        imdbRating = "",
-        imdbID = ""
-    )
 }

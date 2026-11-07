@@ -1,42 +1,14 @@
 package clean.architecture.data.api.config
 
-import clean.architecture.data.BuildConfig
-
 /**
- * Configuration properties for the API.
- * Allows to set mock properties for integration testing.
+ * Immutable configuration for requests to the movie API.
+ *
+ * Inject this configuration wherever API credentials or the base URL are needed. Tests can
+ * provide their own instance without changing process-wide state.
  */
-object ApiConfig {
-    private const val BASE_URL = "https://www.omdbapi.com/"
-
-    private var _baseUrl: String? = null
-    private var _apiKey: String? = null
-
-    /**
-     * The base URL of the API.
-     */
-    val baseUrl: String get() = _baseUrl ?: BASE_URL
-
-    /**
-     * The API key for authentication.
-     */
-    val apiKey: String get() = _apiKey ?: BuildConfig.API_KEY
-
-    /**
-     * Sets the base URL.
-     *
-     * @param baseUrl The base URL of the API.
-     */
-    fun setBaseUrl(baseUrl: String) {
-        _baseUrl = baseUrl
-    }
-
-    /**
-     * Sets the API key.
-     *
-     * @param apiKey The API key for authentication.
-     */
-    fun setApiKey(apiKey: String) {
-        _apiKey = apiKey
-    }
-}
+class ApiConfig(
+    /** The base URL of the API; Retrofit requires a trailing slash. */
+    val baseUrl: String,
+    /** The API key used to authenticate requests. */
+    val apiKey: String
+)

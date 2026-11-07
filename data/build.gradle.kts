@@ -16,6 +16,8 @@ android {
     defaultConfig {
         minSdk = 31
 
+        buildConfigField("String", "BASE_URL", "\"https://www.omdbapi.com/\"")
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -43,6 +45,10 @@ android {
 
     buildFeatures {
         buildConfig = true
+    }
+
+    testFixtures {
+        enable = true
     }
 }
 

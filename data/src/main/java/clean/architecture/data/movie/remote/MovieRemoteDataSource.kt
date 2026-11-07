@@ -11,7 +11,8 @@ import javax.inject.Singleton
  */
 @Singleton
 class MovieRemoteDataSource @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
+    private val apiConfig: ApiConfig
 ) {
 
     /**
@@ -22,5 +23,5 @@ class MovieRemoteDataSource @Inject constructor(
      * @return The list of [Movie].
      */
     suspend fun getMovies(title: String): List<Movie> = apiService
-        .searchMovies(ApiConfig.apiKey, title).movies ?: emptyList()
+        .searchMovies(apiConfig.apiKey, title).movies ?: emptyList()
 }

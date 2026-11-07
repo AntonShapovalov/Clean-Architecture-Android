@@ -2,7 +2,6 @@ package clean.architecture.omdb.di.api
 
 import clean.architecture.data.api.ApiService
 import clean.architecture.data.api.config.ApiConfig
-import clean.architecture.omdb.BuildConfig
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -13,6 +12,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
+import clean.architecture.data.BuildConfig as DataBuildConfig
+import clean.architecture.omdb.BuildConfig as AppBuildConfig
 
 /**
  * Hilt module that provides singleton instance of [ApiService].
@@ -22,13 +23,23 @@ import javax.inject.Singleton
 object ApiModule {
 
     /**
+     * Provides the production API configuration.
+     */
+    @Provides
+    @Singleton
+    fun provideApiConfig(): ApiConfig = ApiConfig(
+        baseUrl = DataBuildConfig.BASE_URL,
+        apiKey = DataBuildConfig.API_KEY
+    )
+
+    /**
      * Provides singleton instance of [ApiService].
      */
     @Provides
     @Singleton
-    fun provideApiService(moshi: Moshi): ApiService {
+    fun provideApiService(moshi: Moshi, apiConfig: ApiConfig): ApiService {
         val client = buildClient()
-        val retrofit = buildRetrofit(client, moshi)
+        val retrofit = buildRetrofit(client, moshi, apiConfig)
         return retrofit.create(ApiService::class.java)
     }
 
@@ -40,9 +51,10 @@ object ApiModule {
 
     private fun buildRetrofit(
         client: OkHttpClient,
-        moshi: Moshi
+        moshi: Moshi,
+        apiConfig: ApiConfig
     ): Retrofit = Retrofit.Builder()
-        .baseUrl(ApiConfig.baseUrl)
+        .baseUrl(apiConfig.baseUrl)
         .client(client)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
@@ -52,7 +64,7 @@ object ApiModule {
         .build()
 
     private fun getLoggingInterceptor() = HttpLoggingInterceptor().apply {
-        level = if (BuildConfig.DEBUG) {
+        level = if (AppBuildConfig.DEBUG) {
             HttpLoggingInterceptor.Level.BODY
         } else {
             HttpLoggingInterceptor.Level.NONE

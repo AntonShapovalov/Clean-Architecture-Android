@@ -64,6 +64,7 @@ android {
 dependencies {
     implementation(project(":data"))
     implementation(project(":domain"))
+    testImplementation(testFixtures(project(":data")))
 
     // Android
     implementation(libs.androidx.core.ktx)

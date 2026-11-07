@@ -13,12 +13,12 @@ import kotlin.test.assertTrue
 class MovieRemoteDataSourceTest {
 
     private val apiService = mockk<ApiService>()
-    private val dataSource = MovieRemoteDataSource(apiService)
+    private val apiConfig = ApiConfig(baseUrl = "https://www.omdbapi.com/", apiKey = "testKey")
+    private val dataSource = MovieRemoteDataSource(apiService, apiConfig)
 
     @Test
     fun `when getting movies, given search response, then return list of movies`() = runTest {
         // Given
-        ApiConfig.setApiKey("testKey")
         val movies = listOf(TestUtils.movieResponse)
         val search = TestUtils.searchResponse.copy(movies = movies)
         coEvery { apiService.searchMovies(apiKey = "testKey", title = "test") } returns search
@@ -33,7 +33,6 @@ class MovieRemoteDataSourceTest {
     @Test
     fun `when getting movies, given search with null movies, then return empty list`() = runTest {
         // Given
-        ApiConfig.setApiKey("testKey")
         val search = TestUtils.searchResponse.copy(movies = null)
         coEvery { apiService.searchMovies(apiKey = "testKey", title = "test") } returns search
 
