@@ -7,4 +7,4 @@ import dagger.hilt.android.HiltAndroidApp
  * Application class.
  */
 @HiltAndroidApp
-class CleanArchitectureApp : Application()
+class OmdbApp : Application()

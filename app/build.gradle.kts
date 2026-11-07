@@ -13,7 +13,7 @@ apply(from = rootProject.file("gradle/kover/kover.gradle"))
 
 android {
     namespace = "clean.architecture.omdb"
-    compileSdk = 35
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "clean.architecture.omdb"
@@ -101,6 +101,7 @@ dependencies {
     testImplementation(libs.mock.web.server)
     testImplementation(libs.hilt.android.testing)
     testImplementation(libs.kotlinx.coroutines.test)
+    kspTest(libs.hilt.android.compiler)
 
     // Instrumentation testing
     androidTestImplementation(libs.kotlin.test)
