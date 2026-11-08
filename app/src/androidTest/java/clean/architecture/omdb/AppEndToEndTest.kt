@@ -13,7 +13,7 @@ import javax.inject.Inject
 import kotlin.test.assertTrue
 
 /**
- * Instrumented end to end test is executed on real Android device with real API,
+ * Instrumented end-to-end test is executed on real Android device with real API,
  * without mocking any of inner or external dependencies.
  *
  * See [testing documentation](http://d.android.com/tools/testing) and
@@ -35,7 +35,7 @@ class AppEndToEndTest {
     }
 
     @Test
-    fun whenGettingMoviesFromAPI_givenTitle_thenResultShouldBeNotEmpty() = runTest {
+    fun whenGettingMoviesFromApi_givenTitle_thenResultShouldBeNotEmpty() = runTest {
         // Given
         val title = "Star"
 

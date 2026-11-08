@@ -10,7 +10,6 @@ import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.HiltTestApplication
@@ -25,6 +24,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -40,6 +40,10 @@ class ApiServiceIntegrationTest {
     object ApiServiceIntegrationTestModule {
 
         @Provides
+        @Singleton
+        fun provideMockWebServer(): MockWebServer = MockWebServer()
+
+        @Provides
         fun provideApiConfig(mockWebServer: MockWebServer): ApiConfig = ApiConfig(
             baseUrl = mockWebServer.url("/").toString(),
             apiKey = "testKey"
@@ -47,11 +51,10 @@ class ApiServiceIntegrationTest {
     }
 
     @get:Rule
-    @field:BindValue
-    val mockWebServer = MockWebServer()
-
-    @get:Rule
     val hiltRule = HiltAndroidRule(this)
+
+    @Inject
+    lateinit var mockWebServer: MockWebServer
 
     @Inject
     lateinit var apiService: ApiService
